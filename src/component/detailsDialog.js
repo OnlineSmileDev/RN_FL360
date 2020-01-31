@@ -8,7 +8,7 @@ import Icon1 from 'react-native-vector-icons/MaterialIcons';
 Icon.loadFont();
 Icon1.loadFont();
 
-Geocoder.init('AIzaSyBy8gzOEnYejEJLzTxxGSq3DSPKZi4K3Ac');
+Geocoder.init('AIzaSyAgoLqg48NvSscb0reSWAUfvebq5bm_g5c');
 
 const mapStateToProps = state => ({});
 
@@ -26,8 +26,8 @@ class DetailsDialog extends Component {
     const details = this.props.details;
     Geocoder.from(details.latitude, details.longitude)
       .then(json => {
-        var addressComponent = json.results[0].address_components[0];
-        this.setState({address: addressComponent.long_name});
+        var addressComponent = json.results[0].formatted_address;
+        this.setState({address: addressComponent});
       })
       .catch(error => console.warn(error));
   }
@@ -67,6 +67,7 @@ class DetailsDialog extends Component {
     return size;
   }
   render() {
+    console.log('@@@@')
     const details = this.props.details;
     return (
       <View style={styles.modalView}>
